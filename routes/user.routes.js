@@ -3,7 +3,7 @@ const { UserModel } = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config()
-const secretKey=process.env.SECRET_KEY
+const secretKey=process.env.SECRET_KEY;
 
 
 
@@ -18,7 +18,8 @@ userRouter.post("/register", async (req, res) => {
   bcrypt.hash(password, 10, async function (err, hash) {
     if (err) return res.send({ message: "somthing went wrong", status: 0 });
     try {
-      let user = new UserModel({ name, email, password: hash });
+      let user =  new UserModel({ name, email, password: hash });
+      console.log(user);
       await user.save();
       res.send({
         message: "User created",
